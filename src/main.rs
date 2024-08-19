@@ -1,3 +1,4 @@
+use Vec;
 // sum of all multiples of 3 or 5 from 1 to max
 fn mult_three_or_five(max: i32) -> i32
 {
@@ -24,14 +25,34 @@ fn even_fibonacci(max: i32) -> i32
         prev = ret;
         if ret & 1 == 0
         {
-            println!("{}", ret);
             sum += ret;
         }
     }
     sum
 }
 
+// largest prime factor of 600851475143
+//  a prime factor is a prime number that can be used along with other
+//  prime numbers in a multiplication to end up with the number provided
+//  return the largest prime for n
+fn largest_prime_factor(n: u64) -> u64
+{
+    let mut i: u64 = 2;
+    let mut n_copy = n;
+    while i * i < n_copy
+    {
+        while n_copy % i == 0
+        {
+            n_copy = n_copy / i;
+        }
+        i += 1;
+    }
+    n_copy
+}
+
 fn main() {
     println!("{}", mult_three_or_five(1000));
     println!("{}", even_fibonacci(4000000));
+    println!("{}", largest_prime_factor(13195));
+    println!("{}", largest_prime_factor(600851475143));
 }
